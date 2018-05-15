@@ -1,5 +1,7 @@
-# Group Project for 软件需求工程与建模 组队项目 
-## Software Requirements Engineering and Modeling
+# Group Project for 软件需求工程与建模 组队项目
+##    (Software Requirements Engineering and Modeling)
+
+<p>http://www.cnblogs.com/rjxqgcyjm18/p/9038878.html</p>
 
 **Group Members**
 <ul>
