@@ -120,8 +120,8 @@ def wordcount(soup):
     print(rawtext)
     words = getwords(rawtext)
     counts, _ = getcounts(words)
-    if counts.most_common(1)[0][1] < 10:
-        print('This page does not have any words used more than 10 times.')
+    if counts.most_common(1)[0][1] < 7:
+        print('This page does not have any words used more than 7 times.')
     else:
         print(counts.most_common(10))
 
