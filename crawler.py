@@ -38,7 +38,6 @@ def crawler(startpage, maxpages=100, singledomain=True):
 
     print('{0} pages crawled, {1} links failed.'.format(pages, failed))
 
-
 def getlinks(pageurl, domain, soup):
     links = [a.attrs.get('href') for a in soup.select('a[href]')]
 
