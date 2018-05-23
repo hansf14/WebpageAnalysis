@@ -38,26 +38,6 @@ def crawler(startpage, maxpages=100, singledomain=True):
 
     print('{0} pages crawled, {1} links failed.'.format(pages, failed))
 
-def getcounts(words=None):
-    counts = collections.Counter(words)
-
-    wordsused = len(counts)
-
-    shortwords = [word for word in counts if len(word) < 3] 
-    ignore = shortwords + \
-        ['after', 'all', 'and', 'are', 'because', 'been', 'but', 'for', 'from',
-         'has', 'have', 'her', 'more', 'not', 'now', 'our', 'than', 'that',
-         'the', 'these', 'they', 'their', 'this', 'was', 'were', 'when', 'who',
-         'will', 'with', 'year', 'hpv19slimfeature', 'div']
-    for word in ignore:
-        counts.pop(word, None)
-
-    tempcopy = [_ for _ in words]
-    for word in tempcopy:
-        if noalpha(word):
-            counts.pop(word, None)
-
-    return (counts, wordsused)
 
 def getlinks(pageurl, domain, soup):
     links = [a.attrs.get('href') for a in soup.select('a[href]')]
@@ -90,7 +70,7 @@ def getwords(rawtext):
 
 def pagehandler(pageurl, pageresponse, soup):
     print('Crawling:' + pageurl + ' ({0} bytes)'.format(len(pageresponse.text)))
-    wordcount(soup) 
+    printtext(soup) 
     return True
 
 def noalpha(word):
@@ -115,15 +95,9 @@ def url_in_list(url, listobj):
     https_version = url.replace('http://', 'https://')
     return (http_version in listobj) or (https_version in listobj)
 
-def wordcount(soup):
+def printtext(soup):
     rawtext = soup.get_text()
     print(rawtext)
-    words = getwords(rawtext)
-    counts, _ = getcounts(words)
-    if counts.most_common(1)[0][1] < 7:
-        print('This page does not have any words used more than 7 times.')
-    else:
-        print(counts.most_common(10))
 
 if __name__ == "__main__":
     START = default_timer()
